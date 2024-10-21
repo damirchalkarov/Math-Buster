@@ -37,15 +37,24 @@ class ViewController: UIViewController {
     
     func setupUI() {
         timerContainerView.layer.cornerRadius = 5
-        resultField.keyboardType = .default
+        resultField.keyboardType = .decimalPad
     }
     
     func generateProblem() {
         let firstDigit = Int.random(in: 0...9)
-        let secondDigit = Int.random(in: 0...9)
         guard let arithmeticOperator = ["+", "-", "/", "*"].randomElement() else {return}
+        var startingInteger: Int = 0
+        var endingInteger: Int = 9
+        if arithmeticOperator == "/" {
+            startingInteger = 1
+        } else if arithmeticOperator == "-" {
+            endingInteger = firstDigit
+        }
+        let secondDigit = Int.random(in: startingInteger...endingInteger)
         
         problemLabel.text = "\(firstDigit) \(arithmeticOperator) \(secondDigit) ="
+        
+        
         
         switch arithmeticOperator {
             case "+":
@@ -72,6 +81,9 @@ class ViewController: UIViewController {
         countDown -= 1
         
         timerLabel.text = "00 : \(countDown)"
+        if countDown < 10 {
+            timerLabel.text = "00 : 0\(countDown)"
+        }
         progressView.progress = Float((30 - countDown)) / 30
         
         if countDown <= 0 {
