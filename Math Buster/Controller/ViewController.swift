@@ -17,17 +17,27 @@ class ViewController: UIViewController {
     @IBOutlet weak var resultField: UITextField!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var restartButton: UIButton!
+    @IBOutlet weak var segmentControl: UISegmentedControl!
     
     var timer: Timer?
     var countDown: Int = 30
     var result: Double?
     var score: Int = 0
+    var navigationBarPreviousTintColor: UIColor?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "Math Buster"
         setupUI()
         generateProblem()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationBarPreviousTintColor = navigationController?.navigationBar.tintColor
+        navigationController?.navigationBar.tintColor = .white
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -35,38 +45,99 @@ class ViewController: UIViewController {
         scheduleTimer()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.navigationBar.tintColor = navigationBarPreviousTintColor
+    }
+    
     func setupUI() {
         timerContainerView.layer.cornerRadius = 5
         resultField.keyboardType = .decimalPad
     }
     
+    
     func generateProblem() {
-        let firstDigit = Int.random(in: 0...9)
-        guard let arithmeticOperator = ["+", "-", "/", "*"].randomElement() else {return}
-        var startingInteger: Int = 0
-        var endingInteger: Int = 9
-        if arithmeticOperator == "/" {
-            startingInteger = 1
-        } else if arithmeticOperator == "-" {
-            endingInteger = firstDigit
-        }
-        let secondDigit = Int.random(in: startingInteger...endingInteger)
-        
-        problemLabel.text = "\(firstDigit) \(arithmeticOperator) \(secondDigit) ="
-        
-        
-        
-        switch arithmeticOperator {
-            case "+":
-                result = Double(firstDigit + secondDigit)
-            case "-":
-                result = Double(firstDigit - secondDigit)
-            case "*":
-                result = Double(firstDigit * secondDigit)
-            case "/":
-                result = Double(firstDigit) / Double(secondDigit)
-            default:
-                result = nil
+        if segmentControl.selectedSegmentIndex == 0 {
+            let firstDigit = Int.random(in: 0...9)
+            guard let arithmeticOperator = ["+", "-", "/", "*"].randomElement() else {return}
+            var startingInteger: Int = 0
+            var endingInteger: Int = 9
+            if arithmeticOperator == "/" {
+                startingInteger = 1
+            } else if arithmeticOperator == "-" {
+                endingInteger = firstDigit
+            }
+            let secondDigit = Int.random(in: startingInteger...endingInteger)
+            
+            problemLabel.text = "\(firstDigit) \(arithmeticOperator) \(secondDigit) ="
+            
+            
+            
+            switch arithmeticOperator {
+                case "+":
+                    result = Double(firstDigit + secondDigit)
+                case "-":
+                    result = Double(firstDigit - secondDigit)
+                case "*":
+                    result = Double(firstDigit * secondDigit)
+                case "/":
+                    result = Double(firstDigit) / Double(secondDigit)
+                default:
+                    result = nil
+            }
+        } else if segmentControl.selectedSegmentIndex == 1 {
+            let firstDigit = Int.random(in: 10...99)
+            guard let arithmeticOperator = ["+", "-", "/", "*"].randomElement() else {return}
+            var startingInteger: Int = 10
+            var endingInteger: Int = 99
+            if arithmeticOperator == "-" {
+                endingInteger = firstDigit
+            }
+            let secondDigit = Int.random(in: startingInteger...endingInteger)
+            
+            problemLabel.text = "\(firstDigit) \(arithmeticOperator) \(secondDigit) ="
+            
+            
+            
+            switch arithmeticOperator {
+                case "+":
+                    result = Double(firstDigit + secondDigit)
+                case "-":
+                    result = Double(firstDigit - secondDigit)
+                case "*":
+                    result = Double(firstDigit * secondDigit)
+                case "/":
+                    result = Double(firstDigit) / Double(secondDigit)
+                default:
+                    result = nil
+            }
+        } else if segmentControl.selectedSegmentIndex == 2 {
+            let firstDigit = Int.random(in: 100...999)
+            guard let arithmeticOperator = ["+", "-", "/", "*"].randomElement() else {return}
+            var startingInteger: Int = 100
+            var endingInteger: Int = 999
+            if arithmeticOperator == "-" {
+                endingInteger = firstDigit
+            }
+            let secondDigit = Int.random(in: startingInteger...endingInteger)
+            
+            problemLabel.text = "\(firstDigit) \(arithmeticOperator) \(secondDigit) ="
+            
+            
+            
+            switch arithmeticOperator {
+                case "+":
+                    result = Double(firstDigit + secondDigit)
+                case "-":
+                    result = Double(firstDigit - secondDigit)
+                case "*":
+                    result = Double(firstDigit * secondDigit)
+                case "/":
+                    result = Double(firstDigit) / Double(secondDigit)
+                default:
+                    result = nil
+            }
         }
     }
     
@@ -103,18 +174,52 @@ class ViewController: UIViewController {
             return
         }
         
-        guard let result = Double(text) else {
-            print("Couldn't convert text \(text) to Double")
-            return
+        if segmentControl.selectedSegmentIndex == 0 {
+            guard let result = Double(text) else {
+                print("Couldn't convert text \(text) to Double")
+                return
+            }
+            
+            if result == self.result {
+                print("Correct answer")
+                score += 1
+                scoreLabel.text = "Score \(score)"
+            } else {
+                print("Incorrect answer")
+            }
         }
         
-        if result == self.result {
-            print("Correct answer")
-            score += 1
-            scoreLabel.text = "Score \(score)"
-        } else {
-            print("Incorrect answer")
+        if segmentControl.selectedSegmentIndex == 1 {
+            guard let result = Double(text) else {
+                print("Couldn't convert text \(text) to Double")
+                return
+            }
+            
+            if result == self.result {
+                print("Correct answer")
+                score += 2
+                scoreLabel.text = "Score \(score)"
+            } else {
+                print("Incorrect answer")
+            }
         }
+        
+        if segmentControl.selectedSegmentIndex == 2 {
+            guard let result = Double(text) else {
+                print("Couldn't convert text \(text) to Double")
+                return
+            }
+            
+            if result == self.result {
+                print("Correct answer")
+                score += 3
+                scoreLabel.text = "Score \(score)"
+            } else {
+                print("Incorrect answer")
+            }
+        }
+        
+        
         
         generateProblem()
         resultField.text = nil
