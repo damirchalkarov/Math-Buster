@@ -56,8 +56,15 @@ class ViewController: UIViewController {
         resultField.keyboardType = .decimalPad
     }
     
-    
     func generateProblem() {
+        
+        if score == 5 {
+            segmentControl.selectedSegmentIndex = 1
+        }
+        if score >= 10 {
+            segmentControl.selectedSegmentIndex = 2
+        }
+        
         if segmentControl.selectedSegmentIndex == 0 {
             let firstDigit = Int.random(in: 0...9)
             guard let arithmeticOperator = ["+", "-", "/", "*"].randomElement() else {return}
@@ -71,8 +78,6 @@ class ViewController: UIViewController {
             let secondDigit = Int.random(in: startingInteger...endingInteger)
             
             problemLabel.text = "\(firstDigit) \(arithmeticOperator) \(secondDigit) ="
-            
-            
             
             switch arithmeticOperator {
                 case "+":
@@ -89,7 +94,7 @@ class ViewController: UIViewController {
         } else if segmentControl.selectedSegmentIndex == 1 {
             let firstDigit = Int.random(in: 10...99)
             guard let arithmeticOperator = ["+", "-", "/", "*"].randomElement() else {return}
-            var startingInteger: Int = 10
+            let startingInteger: Int = 10
             var endingInteger: Int = 99
             if arithmeticOperator == "-" {
                 endingInteger = firstDigit
@@ -97,8 +102,6 @@ class ViewController: UIViewController {
             let secondDigit = Int.random(in: startingInteger...endingInteger)
             
             problemLabel.text = "\(firstDigit) \(arithmeticOperator) \(secondDigit) ="
-            
-            
             
             switch arithmeticOperator {
                 case "+":
@@ -115,7 +118,7 @@ class ViewController: UIViewController {
         } else if segmentControl.selectedSegmentIndex == 2 {
             let firstDigit = Int.random(in: 100...999)
             guard let arithmeticOperator = ["+", "-", "/", "*"].randomElement() else {return}
-            var startingInteger: Int = 100
+            let startingInteger: Int = 100
             var endingInteger: Int = 999
             if arithmeticOperator == "-" {
                 endingInteger = firstDigit
@@ -123,8 +126,6 @@ class ViewController: UIViewController {
             let secondDigit = Int.random(in: startingInteger...endingInteger)
             
             problemLabel.text = "\(firstDigit) \(arithmeticOperator) \(secondDigit) ="
-            
-            
             
             switch arithmeticOperator {
                 case "+":
@@ -218,8 +219,6 @@ class ViewController: UIViewController {
                 print("Incorrect answer")
             }
         }
-        
-        
         
         generateProblem()
         resultField.text = nil
