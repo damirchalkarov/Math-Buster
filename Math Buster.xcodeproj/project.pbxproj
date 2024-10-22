@@ -14,6 +14,7 @@
 		EB8FE4232CC011E60097E8F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB8FE4222CC011E60097E8F7 /* Assets.xcassets */; };
 		EB8FE4262CC011E60097E8F7 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EB8FE4252CC011E60097E8F7 /* Base */; };
 		EBE106CE2CC62A300001A98E /* MainPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE106CD2CC62A300001A98E /* MainPage.swift */; };
+		EBE161C72CC7803E007F8A4E /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE161C62CC7803E007F8A4E /* WelcomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		EB8FE4252CC011E60097E8F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB8FE4272CC011E60097E8F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBE106CD2CC62A300001A98E /* MainPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage.swift; sourceTree = "<group>"; };
+		EBE161C62CC7803E007F8A4E /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				EBE106CD2CC62A300001A98E /* MainPage.swift */,
 				EB8FE41D2CC011E40097E8F7 /* ViewController.swift */,
 				EB8FE41F2CC011E40097E8F7 /* Main.storyboard */,
+				EBE161C62CC7803E007F8A4E /* WelcomeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -166,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB8FE41E2CC011E40097E8F7 /* ViewController.swift in Sources */,
+				EBE161C72CC7803E007F8A4E /* WelcomeViewController.swift in Sources */,
 				EB8FE41A2CC011E40097E8F7 /* AppDelegate.swift in Sources */,
 				EB8FE41C2CC011E40097E8F7 /* SceneDelegate.swift in Sources */,
 				EBE106CE2CC62A300001A98E /* MainPage.swift in Sources */,

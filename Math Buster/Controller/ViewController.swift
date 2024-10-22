@@ -25,6 +25,8 @@ class ViewController: UIViewController {
     var score: Int = 0
     var navigationBarPreviousTintColor: UIColor?
     
+    static let  userScoreKey = "userScore"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -143,7 +145,7 @@ class ViewController: UIViewController {
     }
     
     func scheduleTimer() {
-        countDown = 30
+        countDown = 3
         timer?.invalidate()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimerUI), userInfo: nil, repeats: true)
     }
@@ -159,9 +161,7 @@ class ViewController: UIViewController {
         progressView.progress = Float((30 - countDown)) / 30
         
         if countDown <= 0 {
-            timer?.invalidate()
-            resultField.isEnabled = false
-            submitButton.isEnabled = false
+            finishTheGame()
         }
     }
 
@@ -234,6 +234,62 @@ class ViewController: UIViewController {
         
         resultField.isEnabled = true
         submitButton.isEnabled = true
+    }
+    
+    func finishTheGame() {
+        timer?.invalidate()
+        resultField.isEnabled = false
+        submitButton.isEnabled = false
+        
+        askForName()
+    }
+    
+    func askForName() {
+        let alertController = UIAlertController(title: "Game is over", message: "Save your score: \(score)", preferredStyle: .alert)
+        alertController.addTextField { textField in
+            textField.placeholder = "Enter your name"
+        }
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
+            guard let textField = alertController.textFields?.first else {
+                print("Textfield is absent")
+                return
+            }
+            
+            guard let text = textField.text, !text.isEmpty else {
+                print("Text is nil or empty")
+                return
+            }
+            
+            print("Name: \(text)")
+            
+            //TO DO: Save your score record permanently on device
+            
+            self.saveUserScore(name: text)
+        }
+        alertController.addAction(saveAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true)
+        
+    }
+    
+    func saveUserScore(name: String) {
+        let userScore: [String: Any] = ["name": name, "score": score]
+        let userScoreArray: [[String: Any]] = getUserScoreArray() + [userScore]
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(userScoreArray, forKey: ViewController.userScoreKey)
+        
+    }
+    
+    func getUserScoreArray() -> [[String: Any]] {
+        let userDefaults = UserDefaults.standard
+        let array = userDefaults.array(forKey: ViewController.userScoreKey) as? [[String: Any]]
+        return array ?? []
+        
     }
 }
 
