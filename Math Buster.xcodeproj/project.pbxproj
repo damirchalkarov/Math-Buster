@@ -15,6 +15,8 @@
 		EB8FE4262CC011E60097E8F7 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EB8FE4252CC011E60097E8F7 /* Base */; };
 		EBE106CE2CC62A300001A98E /* MainPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE106CD2CC62A300001A98E /* MainPage.swift */; };
 		EBE161C72CC7803E007F8A4E /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE161C62CC7803E007F8A4E /* WelcomeViewController.swift */; };
+		EBE161CB2CC8DD50007F8A4E /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE161C92CC8DD50007F8A4E /* ScoreTableViewCell.swift */; };
+		EBE161CC2CC8DD50007F8A4E /* ScoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBE161CA2CC8DD50007F8A4E /* ScoreTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		EB8FE4272CC011E60097E8F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBE106CD2CC62A300001A98E /* MainPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage.swift; sourceTree = "<group>"; };
 		EBE161C62CC7803E007F8A4E /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		EBE161C92CC8DD50007F8A4E /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
+		EBE161CA2CC8DD50007F8A4E /* ScoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,7 @@
 		EB8FE42E2CC0122A0097E8F7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EBE161C82CC8DCEF007F8A4E /* Cell */,
 				EBE106CD2CC62A300001A98E /* MainPage.swift */,
 				EB8FE41D2CC011E40097E8F7 /* ViewController.swift */,
 				EB8FE41F2CC011E40097E8F7 /* Main.storyboard */,
@@ -95,6 +100,15 @@
 				EB8FE4222CC011E60097E8F7 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		EBE161C82CC8DCEF007F8A4E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EBE161C92CC8DD50007F8A4E /* ScoreTableViewCell.swift */,
+				EBE161CA2CC8DD50007F8A4E /* ScoreTableViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,6 +171,7 @@
 			files = (
 				EB8FE4232CC011E60097E8F7 /* Assets.xcassets in Resources */,
 				EB8FE4262CC011E60097E8F7 /* Base in Resources */,
+				EBE161CC2CC8DD50007F8A4E /* ScoreTableViewCell.xib in Resources */,
 				EB8FE4212CC011E40097E8F7 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -172,6 +187,7 @@
 				EBE161C72CC7803E007F8A4E /* WelcomeViewController.swift in Sources */,
 				EB8FE41A2CC011E40097E8F7 /* AppDelegate.swift in Sources */,
 				EB8FE41C2CC011E40097E8F7 /* SceneDelegate.swift in Sources */,
+				EBE161CB2CC8DD50007F8A4E /* ScoreTableViewCell.swift in Sources */,
 				EBE106CE2CC62A300001A98E /* MainPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,13 +7,22 @@
 
 import UIKit
 
-class WelcomeViewController: UIViewController {
-
-    @IBOutlet weak var textLabel: UILabel!
+class WelcomeViewController: UIViewController, UITableViewDataSource {
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    var userScoreArrayOfDictionaries: [[String: Any]] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        tableView.register(UINib(nibName: "ScoreTableViewCell", bundle: nil), forCellReuseIdentifier: ScoreTableViewCell.identifier)
+        tableView.dataSource = self
+//        tableView.rowHeight = 60
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,20 +44,35 @@ class WelcomeViewController: UIViewController {
             return
         }
         
-        print("userScoreArrayOfDictionaries: \(userScoreArrayOfDictionaries)")
+        self.userScoreArrayOfDictionaries = userScoreArrayOfDictionaries
+        tableView.reloadData()
         
-        var text: String = ""
-        
-        userScoreArrayOfDictionaries.forEach { dictionary in
-            if let name = dictionary["name"] as? String, let score = dictionary["score"] as? Int {
-                text += "Name: \(name), Score: \(score) \n"
-            }
-        }
-        
-        textLabel.text = text
+//        print("userScoreArrayOfDictionaries: \(userScoreArrayOfDictionaries)")
+//        
+//        var text: String = ""
+//        
+//        userScoreArrayOfDictionaries.forEach { dictionary in
+//            if let name = dictionary["name"] as? String, let score = dictionary["score"] as? Int {
+//                text += "Name: \(name), Score: \(score) \n"
+//            }
+//        }
     }
     
-   
- 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return userScoreArrayOfDictionaries.count
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: ScoreTableViewCell.identifier, for: indexPath) as! ScoreTableViewCell
+        
+        let dictionary: [String: Any] = userScoreArrayOfDictionaries[indexPath.row]
+        if let name = dictionary["name"] as? String, let score = dictionary["score"] as? Int {
+            cell.scoreTextLabel.text = "Name: \(name), Score: \(score)"
+        }
+        
+        return cell
+    }
 
 }
