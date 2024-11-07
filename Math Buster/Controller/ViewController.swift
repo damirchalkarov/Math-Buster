@@ -145,7 +145,7 @@ class ViewController: UIViewController {
     }
     
     func scheduleTimer() {
-        countDown = 3
+        countDown = 30
         timer?.invalidate()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimerUI), userInfo: nil, repeats: true)
     }
@@ -157,6 +157,7 @@ class ViewController: UIViewController {
         timerLabel.text = "00 : \(countDown)"
         if countDown < 10 {
             timerLabel.text = "00 : 0\(countDown)"
+            timerLabel.textColor = .red
         }
         progressView.progress = Float((30 - countDown)) / 30
         
