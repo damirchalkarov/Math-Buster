@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
 
@@ -19,6 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var restartButton: UIButton!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     
+    var player: AVAudioPlayer?
     var timer: Timer?
     var countDown: Int = 30
     var result: Double?
@@ -183,11 +185,14 @@ class ViewController: UIViewController {
             }
             
             if result == self.result {
+                playSound(named: "correct")
                 print("Correct answer")
                 score += 1
                 scoreLabel.text = "Score \(score)"
             } else {
+                playSound(named: "incorrect")
                 print("Incorrect answer")
+                
             }
         }
         
@@ -198,10 +203,12 @@ class ViewController: UIViewController {
             }
             
             if result == self.result {
+                playSound(named: "correct")
                 print("Correct answer")
                 score += 2
                 scoreLabel.text = "Score \(score)"
             } else {
+                playSound(named: "incorrect")
                 print("Incorrect answer")
             }
         }
@@ -213,10 +220,12 @@ class ViewController: UIViewController {
             }
             
             if result == self.result {
+                playSound(named: "correct")
                 print("Correct answer")
                 score += 3
                 scoreLabel.text = "Score \(score)"
             } else {
+                playSound(named: "incorrect")
                 print("Incorrect answer")
             }
         }
@@ -235,6 +244,9 @@ class ViewController: UIViewController {
         
         resultField.isEnabled = true
         submitButton.isEnabled = true
+        
+        segmentControl.selectedSegmentIndex = 0
+        
     }
     
     func finishTheGame() {
@@ -279,7 +291,16 @@ class ViewController: UIViewController {
     
     func saveUserScore(name: String) {
         let userScore: [String: Any] = ["name": name, "score": score]
-        let userScoreArray: [[String: Any]] = getUserScoreArray() + [userScore]
+//        let userScoreArray: [[String: Any]] = getUserScoreArray() + [userScore]
+        var userScoreArray = getUserScoreArray()
+            
+            // Вставляем новый элемент в начало массива
+            userScoreArray.insert(userScore, at: 0)
+            
+            // Сортируем массив по значению score в убывающем порядке
+            userScoreArray.sort { ($0["score"] as? Int ?? 0) > ($1["score"] as? Int ?? 0) }
+        
+        
         
         let userDefaults = UserDefaults.standard
         userDefaults.set(userScoreArray, forKey: ViewController.userScoreKey)
@@ -292,5 +313,19 @@ class ViewController: UIViewController {
         return array ?? []
         
     }
+    
+    func playSound(named soundName: String) {
+        guard let url = Bundle.main.url(forResource: soundName, withExtension: "wav") else { return }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            player = try AVAudioPlayer(contentsOf: url)
+            player?.play()
+        } catch {
+            print("Error playing sound: \(error.localizedDescription)")
+        }
+    }
+
 }
 

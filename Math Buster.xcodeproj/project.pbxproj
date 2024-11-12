@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB5BE2982CDE295700D0E422 /* correct.wav in Resources */ = {isa = PBXBuildFile; fileRef = EB5BE2962CDE295600D0E422 /* correct.wav */; };
+		EB5BE29E2CDE2A7400D0E422 /* incorrect.wav in Resources */ = {isa = PBXBuildFile; fileRef = EB5BE29D2CDE2A7400D0E422 /* incorrect.wav */; };
 		EB8FE41A2CC011E40097E8F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8FE4192CC011E40097E8F7 /* AppDelegate.swift */; };
 		EB8FE41C2CC011E40097E8F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8FE41B2CC011E40097E8F7 /* SceneDelegate.swift */; };
 		EB8FE41E2CC011E40097E8F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8FE41D2CC011E40097E8F7 /* ViewController.swift */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB5BE2962CDE295600D0E422 /* correct.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = correct.wav; sourceTree = "<group>"; };
+		EB5BE29D2CDE2A7400D0E422 /* incorrect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = incorrect.wav; sourceTree = "<group>"; };
 		EB8FE4162CC011E40097E8F7 /* Math Buster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Math Buster.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB8FE4192CC011E40097E8F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB8FE41B2CC011E40097E8F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +49,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EB5BE29A2CDE295F00D0E422 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				EB5BE29D2CDE2A7400D0E422 /* incorrect.wav */,
+				EB5BE2962CDE295600D0E422 /* correct.wav */,
+			);
+			name = sounds;
+			path = ../sounds;
+			sourceTree = "<group>";
+		};
 		EB8FE40D2CC011E40097E8F7 = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +111,7 @@
 		EB8FE42F2CC012360097E8F7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EB5BE29A2CDE295F00D0E422 /* sounds */,
 				EB8FE4222CC011E60097E8F7 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -172,6 +187,8 @@
 				EB8FE4232CC011E60097E8F7 /* Assets.xcassets in Resources */,
 				EB8FE4262CC011E60097E8F7 /* Base in Resources */,
 				EBE161CC2CC8DD50007F8A4E /* ScoreTableViewCell.xib in Resources */,
+				EB5BE2982CDE295700D0E422 /* correct.wav in Resources */,
+				EB5BE29E2CDE2A7400D0E422 /* incorrect.wav in Resources */,
 				EB8FE4212CC011E40097E8F7 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WelcomeViewController: UIViewController, UITableViewDataSource {
+class WelcomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -22,7 +22,8 @@ class WelcomeViewController: UIViewController, UITableViewDataSource {
         
         tableView.register(UINib(nibName: "ScoreTableViewCell", bundle: nil), forCellReuseIdentifier: ScoreTableViewCell.identifier)
         tableView.dataSource = self
-//        tableView.rowHeight = 60
+        tableView.delegate = self
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,9 +71,17 @@ class WelcomeViewController: UIViewController, UITableViewDataSource {
         let dictionary: [String: Any] = userScoreArrayOfDictionaries[indexPath.row]
         if let name = dictionary["name"] as? String, let score = dictionary["score"] as? Int {
             cell.scoreTextLabel.text = "Name: \(name), Score: \(score)"
+            
+            if indexPath.row == 0 {
+                cell.scoreTextLabel.font = UIFont.boldSystemFont(ofSize: 18) // Жирный текст
+                } else {
+                    cell.scoreTextLabel.font = UIFont.systemFont(ofSize: 17) // Обычный шрифт для остальных
+                }
         }
         
         return cell
     }
+    
+   
 
 }
