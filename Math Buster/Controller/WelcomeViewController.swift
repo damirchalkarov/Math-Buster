@@ -1,21 +1,12 @@
-//
-//  WelcomeViewController.swift
-//  Math Buster
-//
-//  Created by Damir Chalkarov on 22.10.2024.
-//
 
 import UIKit
 
 class WelcomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var multiplayerButton: UIBarButtonItem!
     
-    var userScoreArrayOfDictionaries: [[String: Any]] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    var userScoreArrayOfDictionaries: [[String: Any]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,12 +14,11 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.register(UINib(nibName: "ScoreTableViewCell", bundle: nil), forCellReuseIdentifier: ScoreTableViewCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
-
+        multiplayerButton.customView?.layer.cornerRadius = 5
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         getUserScore()
     }
     
@@ -36,7 +26,7 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         let userDefaults = UserDefaults.standard
         
         guard let userScore = userDefaults.array(forKey: ViewController.userScoreKey) else {
-            print("Userdefaults doesn't contain array with key: \(ViewController.userScoreKey)")
+            print("UserDefaults doesn't contain array with key: \(ViewController.userScoreKey)")
             return
         }
         
@@ -47,23 +37,13 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
         
         self.userScoreArrayOfDictionaries = userScoreArrayOfDictionaries
         tableView.reloadData()
-        
-//        print("userScoreArrayOfDictionaries: \(userScoreArrayOfDictionaries)")
-//        
-//        var text: String = ""
-//        
-//        userScoreArrayOfDictionaries.forEach { dictionary in
-//            if let name = dictionary["name"] as? String, let score = dictionary["score"] as? Int {
-//                text += "Name: \(name), Score: \(score) \n"
-//            }
-//        }
     }
     
+    // MARK: - UITableViewDataSource
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userScoreArrayOfDictionaries.count
     }
-    
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ScoreTableViewCell.identifier, for: indexPath) as! ScoreTableViewCell
@@ -74,14 +54,31 @@ class WelcomeViewController: UIViewController, UITableViewDataSource, UITableVie
             
             if indexPath.row == 0 {
                 cell.scoreTextLabel.font = UIFont.boldSystemFont(ofSize: 18) // Жирный текст
-                } else {
-                    cell.scoreTextLabel.font = UIFont.systemFont(ofSize: 17) // Обычный шрифт для остальных
-                }
+            } else {
+                cell.scoreTextLabel.font = UIFont.systemFont(ofSize: 17) // Обычный шрифт для остальных
+            }
         }
         
         return cell
     }
     
-   
+    // MARK: - UITableViewDelegate (Swipe to Delete)
 
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Удаляем запись из массива
+            userScoreArrayOfDictionaries.remove(at: indexPath.row)
+            
+            // Сохраняем обновлённый массив в UserDefaults
+            let userDefaults = UserDefaults.standard
+            userDefaults.set(userScoreArrayOfDictionaries, forKey: ViewController.userScoreKey)
+            
+            // Удаляем строку из таблицы
+            tableView.performBatchUpdates({
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }, completion: { _ in
+                self.tableView.reloadData() // Обновляем, если требуется
+            })
+        }
+    }
 }

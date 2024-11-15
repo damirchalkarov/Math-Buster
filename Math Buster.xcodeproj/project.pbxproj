@@ -15,6 +15,7 @@
 		EB8FE4212CC011E40097E8F7 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EB8FE4202CC011E40097E8F7 /* Base */; };
 		EB8FE4232CC011E60097E8F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB8FE4222CC011E60097E8F7 /* Assets.xcassets */; };
 		EB8FE4262CC011E60097E8F7 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EB8FE4252CC011E60097E8F7 /* Base */; };
+		EB9FF9D82CE36E2F00CB2EF8 /* MultiplayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9FF9D72CE36E2F00CB2EF8 /* MultiplayerViewController.swift */; };
 		EBE106CE2CC62A300001A98E /* MainPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE106CD2CC62A300001A98E /* MainPage.swift */; };
 		EBE161C72CC7803E007F8A4E /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE161C62CC7803E007F8A4E /* WelcomeViewController.swift */; };
 		EBE161CB2CC8DD50007F8A4E /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE161C92CC8DD50007F8A4E /* ScoreTableViewCell.swift */; };
@@ -32,6 +33,7 @@
 		EB8FE4222CC011E60097E8F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB8FE4252CC011E60097E8F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB8FE4272CC011E60097E8F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB9FF9D72CE36E2F00CB2EF8 /* MultiplayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerViewController.swift; sourceTree = "<group>"; };
 		EBE106CD2CC62A300001A98E /* MainPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage.swift; sourceTree = "<group>"; };
 		EBE161C62CC7803E007F8A4E /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		EBE161C92CC8DD50007F8A4E /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				EB8FE41D2CC011E40097E8F7 /* ViewController.swift */,
 				EB8FE41F2CC011E40097E8F7 /* Main.storyboard */,
 				EBE161C62CC7803E007F8A4E /* WelcomeViewController.swift */,
+				EB9FF9D72CE36E2F00CB2EF8 /* MultiplayerViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				EB8FE41E2CC011E40097E8F7 /* ViewController.swift in Sources */,
 				EBE161C72CC7803E007F8A4E /* WelcomeViewController.swift in Sources */,
 				EB8FE41A2CC011E40097E8F7 /* AppDelegate.swift in Sources */,
+				EB9FF9D82CE36E2F00CB2EF8 /* MultiplayerViewController.swift in Sources */,
 				EB8FE41C2CC011E40097E8F7 /* SceneDelegate.swift in Sources */,
 				EBE161CB2CC8DD50007F8A4E /* ScoreTableViewCell.swift in Sources */,
 				EBE106CE2CC62A300001A98E /* MainPage.swift in Sources */,
